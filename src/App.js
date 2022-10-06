@@ -6,6 +6,7 @@ import "./App.css";
 import Home from "./component/Home";
 import AddContact from "./component/AddContact";
 import EditContact from "./component/EditContact";
+import View from "./component/View";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/addcontact" element={<AddContact />} />
           <Route path="/update/:id" element={<EditContact />} />
+          <Route path="/view/:id" element={<View />} />
         </Routes>
       </div>
     </Router>
