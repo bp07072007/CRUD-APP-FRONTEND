@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./styles/Home.css";
 
-import { ContactDataList,DeleteContactRecord } from "../utils/ActionUtility.js";
+import {
+  ContactDataList,
+  DeleteContactRecord,
+  ChangeStatusUtility,
+} from "../utils/ActionUtility.js";
 
 const Home = () => {
   // Define the useSate
@@ -20,7 +24,6 @@ const Home = () => {
     loadData();
   }, []);
 
-
   // Deleting the contact from database
 
   const deleteContact = (id) => {
@@ -28,6 +31,18 @@ const Home = () => {
       DeleteContactRecord(id);
       setTimeout(() => loadData(), 500);
     }
+  };
+
+  // Method for change the status
+
+  const changeStatus = (id, sendStatus) => {
+    let status = "";
+    if (sendStatus === 1) {
+      status = 0;
+    } else status = 1;
+
+    ChangeStatusUtility(id, status);
+    setTimeout(() => loadData(), 50);
   };
 
   // Method for set the status
@@ -91,10 +106,21 @@ const Home = () => {
                 <td>{item.contact}</td>
                 <td>{item.status === 0 ? "Not Completed" : "Completed"}</td>
                 <td>
-                <Link to={`/update/${item.id}`}>
+                  <Link to={`/update/${item.id}`}>
                     <button className="btn btn-edit">Edit</button>
                   </Link>
-                  <button className="btn btn-delete" onClick={() => deleteContact(item.id)}>Delete</button>
+                  <button
+                    className="btn btn-delete"
+                    onClick={() => deleteContact(item.id)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="btn btn-edit"
+                    onClick={() => changeStatus(item.id, item.status)}
+                  >
+                    Change Status
+                  </button>
                 </td>
               </tr>
             );
