@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 import Home from "./component/Home";
-import AddEdit from "./component/AddEdit";
+import AddContact from "./component/AddContact";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <ToastContainer position="top-center" />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/addcontact" element={<AddEdit />} />
+          <Route path="/addcontact" element={<AddContact />} />
         </Routes>
       </div>
     </Router>
