@@ -73,4 +73,15 @@ export const ChangeStatusUtility = (id, status) => {
       })
       .catch((err) => toast.error(err.response.data));
   };
+
+
+  // Function for information of List of contact
+
+export const LoadDataSingleContact = async (id) => {
+    const resp = await axios.get(
+      `${process.env.REACT_APP_SERVER_PATH}/api/get/${id}`
+    );
+  
+    return resp.data.data;
+  };
   
