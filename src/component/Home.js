@@ -81,6 +81,9 @@ const Home = () => {
                 <td>{item.contact}</td>
                 <td>{item.status === 0 ? "Not Completed" : "Completed"}</td>
                 <td>
+                <Link to={`/update/${item.id}`}>
+                    <button className="btn btn-edit">Edit</button>
+                  </Link>
                   <button className="btn btn-delete">Delete</button>
                 </td>
               </tr>
