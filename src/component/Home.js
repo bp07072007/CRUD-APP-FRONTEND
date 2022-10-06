@@ -8,8 +8,7 @@ const Home = () => {
   // Define the useSate
 
   const [data, setData] = useState([]);
-
-
+  const [status, setStatus] = useState("2");
 
   // Function for information of List of contact
   const loadData = async () => {
@@ -21,15 +20,24 @@ const Home = () => {
     loadData();
   }, []);
 
-   // Method for set the status
+  // Method for set the status
 
-
+  const handleChangeStatus = (e) => {
+    setStatus(e.target.value);
+  };
 
   let LoopData = "";
-  
+  if (status) {
+    if (parseInt(status) === 2) {
+      LoopData = data;
+    } else if (parseInt(status) === 0) {
+      LoopData = data.filter((item) => parseInt(item.status) === 0);
+    } else if (parseInt(status) === 1) {
+      LoopData = data.filter((item) => parseInt(item.status) === 1);
+    }
+  } else {
     LoopData = data;
- 
-
+  }
 
   return (
     <div style={{ marginTop: "50px" }}>
@@ -41,8 +49,17 @@ const Home = () => {
           Add Contact
         </button>
       </Link>
-      
-      
+      <label htmlFor="changestatusFilter">Status Filter</label>
+      <select
+        id="changestatusFilter"
+        style={{ width: "12%" }}
+        onChange={handleChangeStatus}
+      >
+        <option value="2">All</option>
+        <option value="0">Not Completed</option>
+        <option value="1">Completed</option>
+      </select>
+
       <table className="styled-table">
         <thead>
           <tr>
@@ -64,6 +81,9 @@ const Home = () => {
                 <td>{item.contact}</td>
                 <td>{item.status === 0 ? "Not Completed" : "Completed"}</td>
                 <td>
+                <Link to={`/update/${item.id}`}>
+                    <button className="btn btn-edit">Edit</button>
+                  </Link>
                   <button className="btn btn-delete">Delete</button>
                 </td>
               </tr>

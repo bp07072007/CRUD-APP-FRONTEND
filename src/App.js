@@ -5,6 +5,7 @@ import "./App.css";
 
 import Home from "./component/Home";
 import AddContact from "./component/AddContact";
+import EditContact from "./component/EditContact";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addcontact" element={<AddContact />} />
+          <Route path="/update/:id" element={<EditContact />} />
         </Routes>
       </div>
     </Router>
