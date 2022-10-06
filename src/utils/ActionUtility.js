@@ -59,4 +59,18 @@ export const DeleteContactRecord = (id) => {
     axios.delete(`${process.env.REACT_APP_SERVER_PATH}/api/remove/${id}`);
     toast.success("Contact deleted succesfully");
   };
+
+  // Method for change the status
+
+export const ChangeStatusUtility = (id, status) => {
+    axios
+      .put(`${process.env.REACT_APP_SERVER_PATH}/api/update/status/${id}`, {
+        status,
+        
+      })
+      .then(() => {
+        toast.success("Contact status updated successfully");
+      })
+      .catch((err) => toast.error(err.response.data));
+  };
   
