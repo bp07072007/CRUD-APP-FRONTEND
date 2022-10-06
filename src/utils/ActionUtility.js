@@ -51,3 +51,12 @@ export const EditContactAction = async (id,name, email, contact) => {
     .catch((err) => toast.error(err.response.data));
   toast.success("Contact updated successfully");
 };
+
+
+// Deleting the contact from database
+
+export const DeleteContactRecord = (id) => {
+    axios.delete(`${process.env.REACT_APP_SERVER_PATH}/api/remove/${id}`);
+    toast.success("Contact deleted succesfully");
+  };
+  
